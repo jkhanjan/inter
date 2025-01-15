@@ -6,11 +6,11 @@ const Page2 = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // Only run animation if window width is above mobile breakpoint (768px)
-    const handleAnimation = () => {
-      if (window.innerWidth >= 768) {
-        gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger); // Moved outside of handleAnimation
 
+    const handleAnimation = () => {
+      if (window.innerWidth >= 768 && containerRef.current) {
+        // Check if containerRef is valid
         // Select all cards using a container reference instead of individual refs
         const cards = gsap.utils.toArray(".card");
 
@@ -52,7 +52,7 @@ const Page2 = () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
-
+  
   return (
     <div
       ref={containerRef}
