@@ -1,12 +1,19 @@
-import React, { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "../App.css";
+import React, { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 
 const Page1 = () => {
   const videoRef = useRef(null);
-  const videoContRef = useRef(null);
-  const parent = useRef(null);
+  const containerRef = useRef(null);
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const [containerHeight, setContainerHeight] = useState("100vh");
+
+  const { scrollY } = useScroll();
+  const scale = useTransform(
+    scrollY,
+    [0, window.innerHeight * 0.5],
+    [1, isMobile ? 1 : 1.5]
+  );
 
   useEffect(() => {
     // Autoplay video with error handling
@@ -15,77 +22,18 @@ const Page1 = () => {
         console.log("Video autoplay failed:", error);
       });
     }
-  }, []);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.getAll().forEach((st) => st.kill());
-
-    // Only run animation on desktop screens
-    if (window.innerWidth >= 768) {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: parent.current,
-          start: "top top",
-          end: "+=70%",
-          scrub: {
-            ease: "power1.inOut",
-            duration: 1,
-          },
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-        },
-      });
-
-      // Set initial width for desktop
-      gsap.set(videoContRef.current, {
-        width: "60%",
-        borderRadius: "1rem",
-      });
-
-      // Animation sequence for desktop
-      tl.to(videoContRef.current, {
-        width: "100%",
-        borderRadius: "0",
-        duration: 1,
-        ease: "power2.inOut",
-      });
-    } else {
-      // Set static styles for mobile
-      gsap.set(videoContRef.current, {
-        width: "100%",
-        borderRadius: "0",
-      });
-    }
-
-    // Handle resize events
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        gsap.set(videoContRef.current, {
-          width: "100%",
-          borderRadius: "0",
-        });
-      } else {
-        gsap.set(videoContRef.current, {
-          width: "60%",
-          borderRadius: "1rem",
-        });
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-      window.removeEventListener("resize", handleResize);
-    };
+    // Update container height
+    setContainerHeight(`${window.innerHeight * 1.7}px`);
   }, []);
 
   return (
-    <div ref={parent} className="min-h-screen bg-black">
+    <div
+      ref={containerRef}
+      className="bg-black sm:h-[170svh] h-fit"
+    >
       {/* Header */}
-      <header className="w-full py-4 px-4 md:px-12">
+      <header className="w-full py-4 px-4 md:px-12 fixed top-0 z-10">
         <div className="max-w-7xl mx-auto">
           <img
             className="w-36 md:w-56 lg:w-64"
@@ -96,33 +44,47 @@ const Page1 = () => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 md:px-12 pt-6 md:pt-16">
-        <div className="flex flex-col items-center text-center space-y-4 md:space-y-8">
-          {/* Hero Text */}
-          <div className="space-y-2 md:space-y-1">
-            <h1 className="text-white text-3xl md:text-6xl lg:text-8xl font-bold leading-tight">
+      <main className="max-w-7xl mx-auto px-4 md:px-12 pt-24 md:pt-32">
+        <div className="flex flex-col items-center text-center space-y-4 md:space-y-8 ">
+          <motion.div
+            className="space-y-2 md:space-y-1"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-white text-3xl md:text-6xl lg:text-8xl font-bold leading-[1.2]">
               Hire cars drivers
             </h1>
-            <h2 className="text-white text-3xl md:text-6xl lg:text-8xl font-bold leading-tight">
+            <h2 className="text-white text-3xl md:text-6xl lg:text-8xl font-bold leading-[1.2]">
               100% trained & verified
             </h2>
-          </div>
-
-          {/* Subtext */}
-          <p className="text-white text-base md:text-xl max-w-2xl">
+          </motion.div>
+          <motion.p
+            className="text-white text-base md:text-xl max-w-2xl leading-[1.6]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
             Experience premium on-demand drivers for your own car
-          </p>
-
-          <p className="font-bold text-gray-400 text-xs md:text-base">
+          </motion.p>
+          <motion.p
+            className="font-bold text-gray-400 text-md md:text-base leading-[1.5]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             -A CARS24 COMPANY-
-          </p>
+          </motion.p>
         </div>
       </main>
 
       {/* Video Section */}
-      <div
-        ref={videoContRef}
-        className="video-container mt-6 md:mt-12 overflow-hidden shadow-2xl md:rounded-2xl w-full md:w-[60%] mx-auto"
+      <motion.div
+        className="mt-24 md:mt-44 overflow-hidden shadow-2xl md:rounded-2xl mx-auto"
+        style={{
+          width: isMobile ? "100%" : "65%",
+          scale,
+        }}
       >
         <video
           ref={videoRef}
@@ -138,7 +100,7 @@ const Page1 = () => {
           />
           Your browser does not support the video tag.
         </video>
-      </div>
+      </motion.div>
     </div>
   );
 };

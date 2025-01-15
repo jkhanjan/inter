@@ -15,7 +15,7 @@ const App = () => {
       },
     });
 
-    lenis.on();
+    lenis.on(); 
 
     return () => {
       lenis.off();

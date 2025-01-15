@@ -2,14 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
   /* background-color: black; */
-}
-
-.video-container {
-  will-change: width; /* Optimize GPU rendering for smoother animations */
-  transition: all 0.3s ease-out; /* Ensure smooth resizing */
-}
-
-video {
-  display: block;
 }
