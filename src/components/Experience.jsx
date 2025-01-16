@@ -7,7 +7,7 @@ import { Vector3 } from "three";
 const Experience = () => {
   const carRef = useRef();
   const sceneRef = useRef();
-  const originalCameraPosition = new Vector3(0, 2, 10); // Initial camera position
+  const originalCameraPosition = new Vector3(0, 1, 10); // Initial camera position
   const focusPoint = new Vector3(0, 1, 0); // Focus point for zoom-in
   const { scrollYProgress } = useScroll();
 

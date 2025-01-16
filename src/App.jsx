@@ -3,6 +3,8 @@ import Page2 from "./components/Page2";
 import Page3 from "./components/Page3";
 import { useRef, useEffect } from "react";
 import Lenis from "lenis";
+import './App.css'
+import Page4 from "./components/Page4";
 
 const App = () => {
   const appRef = useRef(null);
@@ -15,7 +17,7 @@ const App = () => {
       },
     });
 
-    lenis.on(); 
+    lenis.on();
 
     return () => {
       lenis.off();
@@ -23,9 +25,12 @@ const App = () => {
   }, []);
 
   return (
-    <div ref={appRef}>
-      <Page1 />
-      <Page2 />
+    <div className="w-[100vw]" ref={appRef}>
+        {" "}
+        <Page1 />
+        {/* <Page4 /> */}
+        <Page2 />
+    
       <Page3 />
     </div>
   );

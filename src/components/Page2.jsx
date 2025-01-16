@@ -52,16 +52,16 @@ const Page2 = () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
-  
+
   return (
     <div
       ref={containerRef}
-      className="w-full h-fit flex flex-col justify-center bg-black sm:p-28"
+      className="w-full h-fit flex flex-col justify-center bg-black sm:p-28 overflow-hidden"
     >
-      <h1 className="text-white text-4xl w-[50%] font-bold mb-10">
+      <h1 className="text-white text-6xl w-[100%] font-bold mb-10 p-4">
         Our Services
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Card 1 */}
         <div className="card relative  rounded-lg shadow-lg">
           <img
@@ -69,7 +69,7 @@ const Page2 = () => {
             alt="Service 1"
             className="w-full h-[60svh] object-cover z-0"
           />
-          <div className="m-6 sm:m-0 p-3 sm:p-0 bg-white sm:bg-transparent bg-opacity-10 backdrop-blur-md rounded-md sm:relative absolute bottom-1 z-[10]">
+          <div className="m-6 sm:m-0 p-3 sm:p-0 bg-white sm:bg-transparent bg-opacity-10 backdrop-blur-sm rounded-sm sm:relative absolute bottom-1 z-[10]">
             <h2 className="text-gray-200 text-2xl font-semibold">
               One Way Trip
             </h2>
@@ -87,7 +87,7 @@ const Page2 = () => {
             alt="Service 2"
             className="w-full h-[60svh] object-cover z-0"
           />
-          <div className="m-6 sm:m-0 p-3 sm:p-0 bg-white sm:bg-transparent bg-opacity-10 backdrop-blur-md rounded-md absolute sm:relative bottom-1 z-[10]">
+          <div className="m-6 sm:m-0 p-3 sm:p-0 bg-white sm:bg-transparent bg-opacity-10 backdrop-blur-sm rounded-sm absolute sm:relative bottom-1 z-[10]">
             <h2 className="text-gray-200 text-2xl font-semibold">
               One Way Trip
             </h2>
@@ -105,7 +105,7 @@ const Page2 = () => {
             alt="Service 3"
             className="w-full h-[60svh] object-cover"
           />
-          <div className="m-6 sm:m-0 p-3 sm:p-0 bg-white sm:bg-transparent bg-opacity-10 backdrop-blur-md rounded-md absolute sm:relative bottom-1 z-[10]">
+          <div className="m-6 sm:m-0 p-3 sm:p-0 bg-white sm:bg-transparent bg-opacity-10 backdrop-blur-sm rounded-sm absolute sm:relative bottom-1 z-[10]">
             <h2 className="text-gray-200 text-2xl font-semibold">
               One Way Trip
             </h2>
