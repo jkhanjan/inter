@@ -1,10 +1,19 @@
-import Page1 from "./components/Page1";
-import Page2 from "./components/Page2";
-import Page3 from "./components/Page3";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, lazy, Suspense } from "react";
 import Lenis from "lenis";
-import './App.css'
-import Page4 from "./components/Page4";
+import "./App.css";
+
+// Lazy load components
+const Page1 = lazy(() => import("./components/Page1"));
+const Page2 = lazy(() => import("./components/Page2"));
+const Page3 = lazy(() => import("./components/Page3"));
+const Page4 = lazy(() => import("./components/Page4"));
+
+// Loading fallback component
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center h-screen w-full">
+    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
 
 const App = () => {
   const appRef = useRef(null);
@@ -25,13 +34,13 @@ const App = () => {
   }, []);
 
   return (
-    <div className="w-[100vw]" ref={appRef}>
-        {" "}
+    <div className="" ref={appRef}>
+      <Suspense fallback={<LoadingSpinner />}>
         <Page1 />
         <Page4 />
         <Page2 />
-    
-      <Page3 />
+        <Page3 />
+      </Suspense>
     </div>
   );
 };

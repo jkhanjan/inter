@@ -13,7 +13,7 @@ const Scene = () => {
     <Canvas camera={{ position: [0, 0, 10], fov: 30 }}>
       <Stage adjustCamera={false} />
       <Experience />
-      <OrbitControls enableZoom={false} />
+      <OrbitControls enableZoom={false} enableRotate={false} />
       <EffectComposer>
         <Bloom intensity={2} luminanceThreshold={1} />
         <BrightnessContrast brightness={0} contrast={0.2} />
