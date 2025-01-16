@@ -96,7 +96,7 @@ const Page4 = () => {
           </div>
 
           {/* Images */}
-          <div className="hidden sm:block relative w-[35vw] h-[420px]">
+          <div className="hidden lg:block relative w-[35vw] h-[50vh]">
             {images.map((image, index) => (
               <div
                 key={index}
