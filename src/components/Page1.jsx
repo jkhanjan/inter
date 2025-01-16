@@ -28,7 +28,7 @@ const Page1 = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="bg-black sm:h-[170svh] h-fit overflow-hidden">
+    <div ref={containerRef} className="bg-black sm:h-[170svh] h-fit ">
       {/* Header */}
       <header className="w-[100vw] overflow-x-hidden py-4 px-4 sm:px-12 fixed top-0 z-10">
         <div className="max-w-7xl mx-auto">
