@@ -81,6 +81,8 @@ const Page1 = () => {
         style={{
           width: isMobile ? "100%" : "65%",
           scale,
+          ease: "easeInOut",
+          duration:'1'
         }}
       >
         <video

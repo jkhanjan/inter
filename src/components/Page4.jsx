@@ -65,11 +65,11 @@ const Page4 = () => {
       className="w-full min-h-[300vh] relative bg-black text-white"
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center">
-        <h1 className="text-4xl mt-8 font-bold sm:p-4 sm:text-7xl sm:mt-16 px-4 sm:px-28">
+        <h1 className="text-6xl mt-28 font-bold sm:p-4 sm:text-7xl sm:mt-16 px-4 sm:px-28">
           Why AutoPilot?
         </h1>
 
-        <div className="w-full h-full flex sm:p-4 justify-between items-center px-4 sm:px-28 relative">
+        <div className="w-full h-full flex sm:p-4 justify-evenly items-center px-4 sm:px-28 relative">
           {/* Text Blocks */}
           <div className="flex flex-col gap-10 sm:gap-20 mt-10 sm:mt-[-20px] relative z-10">
             {[
@@ -82,8 +82,8 @@ const Page4 = () => {
                 ref={(el) => (textRefs.current[index] = el)}
                 className="opacity-30"
               >
-                <h1 className="font-semibold text-xl sm:text-3xl">{title}</h1>
-                <p className="text-sm font-semibold sm:text-lg">
+                <h1 className="font-semibold text-2xl sm:text-3xl">{title}</h1>
+                <p className="text-lg sm:text-lg">
                   {index === 0 &&
                     "Streamline your workflow with lightning-fast automation and efficient process handling."}
                   {index === 1 &&
