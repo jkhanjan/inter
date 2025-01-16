@@ -1,14 +1,14 @@
-// AnimatedText.jsx
-import React, { forwardRef } from "react";
-import { useRef } from "react";
+import React, { forwardRef, useRef } from "react";
+import { useLayoutEffect } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 const AnimatedText = forwardRef(({ title, description }, ref) => (
-  <div ref={ref} className="opacity-30 transform will-change-transform">
+  <div ref={ref} className="md:opacity-30 transform will-change-transform">
     <h2 className="font-semibold text-2xl sm:text-3xl">{title}</h2>
     <p className="text-lg sm:text-lg">{description}</p>
   </div>
 ));
-
 
 const AnimatedImage = forwardRef(({ image, title }, ref) => (
   <div
@@ -24,13 +24,32 @@ const AnimatedImage = forwardRef(({ image, title }, ref) => (
   </div>
 ));
 
-// useScrollAnimations.js
-import { useLayoutEffect } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+export const content = [
+  {
+    title: "Fast & Efficient",
+    description:
+      "Streamline your workflow with lightning-fast automation and efficient process handling.",
+    image: "/img2.webp",
+  },
+  {
+    title: "Intelligent Learning",
+    description:
+      "Advanced AI algorithms that adapt and improve based on your specific needs and patterns.",
+    image: "/img3.webp",
+  },
+  {
+    title: "Reliable & Secure",
+    description:
+      "Enterprise-grade security with 99.9% uptime guarantee for peace of mind.",
+    image: "/img4.webp",
+  },
+];
 
-export const useScrollAnimations = (containerRef, textRefs, imageRefs) => {
+const useScrollAnimations = (containerRef, textRefs, imageRefs) => {
   useLayoutEffect(() => {
+    // Only apply animations on desktop screens
+    if (window.innerWidth < 768) return;
+
     let animations = [];
     gsap.registerPlugin(ScrollTrigger);
 
@@ -102,28 +121,6 @@ export const useScrollAnimations = (containerRef, textRefs, imageRefs) => {
   }, []);
 };
 
-// contentData.js
-export const content = [
-  {
-    title: "Fast & Efficient",
-    description:
-      "Streamline your workflow with lightning-fast automation and efficient process handling.",
-    image: "/img2.webp",
-  },
-  {
-    title: "Intelligent Learning",
-    description:
-      "Advanced AI algorithms that adapt and improve based on your specific needs and patterns.",
-    image: "/img3.webp",
-  },
-  {
-    title: "Reliable & Secure",
-    description:
-      "Enterprise-grade security with 99.9% uptime guarantee for peace of mind.",
-    image: "/img4.webp",
-  },
-];
-
 const Page4 = () => {
   const containerRef = useRef(null);
   const textRefs = useRef([]);
@@ -134,9 +131,9 @@ const Page4 = () => {
   return (
     <div
       ref={containerRef}
-      className="w-full min-h-[300vh] relative bg-black text-white"
+      className="w-full relative bg-black text-white md:min-h-[300vh]"
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center">
+      <div className="md:sticky md:top-0 h-screen flex flex-col justify-center">
         <h1 className="text-6xl mt-28 font-bold sm:p-4 sm:text-7xl sm:mt-16 px-4 sm:px-28">
           Why AutoPilot?
         </h1>
