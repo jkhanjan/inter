@@ -22,7 +22,7 @@ const Page3 = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: elem.current,
-        start: "top 20%",
+        start: "top 10%",
         end: "bottom bottom",
         scrub: 1,
         // markers: true,
