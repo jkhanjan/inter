@@ -28,7 +28,7 @@ const App = () => {
     <div className="w-[100vw]" ref={appRef}>
         {" "}
         <Page1 />
-        {/* <Page4 /> */}
+        <Page4 />
         <Page2 />
     
       <Page3 />

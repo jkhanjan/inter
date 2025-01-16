@@ -32,9 +32,13 @@ const Page4 = () => {
       imageRefs.current.forEach((image, index) => {
         gsap.fromTo(
           image,
-          { opacity: 0 },
+          {
+            opacity: 0,
+            y: 20,
+          },
           {
             opacity: 1,
+            y: 0,
             scrollTrigger: {
               trigger: containerRef.current,
               start: `${index * 30}% center`,
@@ -49,19 +53,25 @@ const Page4 = () => {
     return () => ctx.revert(); // Cleanup
   }, []);
 
+  const images = [
+    { src: "/img2.webp", alt: "Fast & Efficient" },
+    { src: "/img3.webp", alt: "Intelligent Learning" },
+    { src: "/img4.webp", alt: "Reliable & Secure" },
+  ];
+
   return (
     <div
       ref={containerRef}
       className="w-full min-h-[300vh] relative bg-black text-white"
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center">
-        <h1 className="text-4xl mt-8 font-bold sm:p-4 sm:text-5xl sm:mt-0 px-4 sm:px-28">
+        <h1 className="text-4xl mt-8 font-bold sm:p-4 sm:text-7xl sm:mt-16 px-4 sm:px-28">
           Why AutoPilot?
         </h1>
 
         <div className="w-full h-full flex sm:p-4 justify-between items-center px-4 sm:px-28 relative">
           {/* Text Blocks */}
-          <div className="flex flex-col gap-10 mt-10 sm:mt-0 relative z-10">
+          <div className="flex flex-col gap-10 sm:gap-20 mt-10 sm:mt-[-20px] relative z-10">
             {[
               "Fast & Efficient",
               "Intelligent Learning",
@@ -86,17 +96,17 @@ const Page4 = () => {
           </div>
 
           {/* Images */}
-          <div className="hidden sm:block relative z-1000">
-            {["/img4.webp", "/img3.webp", "/img2.webp"].map((src, index) => (
+          <div className="hidden sm:block relative w-[35vw] h-[420px]">
+            {images.map((image, index) => (
               <div
                 key={index}
                 ref={(el) => (imageRefs.current[index] = el)}
-                className="absolute top-0 left-0 opacity-0"
+                className="absolute top-0 left-0 w-full opacity-0"
               >
                 <img
-                  className="w-[35vw]"
-                  src={src}
-                  alt={`Image ${index + 1}`}
+                  className="w-full h-auto object-cover rounded-lg"
+                  src={image.src}
+                  alt={image.alt}
                 />
               </div>
             ))}
