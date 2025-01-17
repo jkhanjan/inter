@@ -6,3 +6,31 @@
   scrollbar-width: none;
   /* background-color: black; */
 }
+
+@keyframes opacity-darken {
+  0% {
+    opacity: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+  100% {
+    opacity: 1;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+}
+
+.opacity-mask {
+  animation: opacity-darken 3s linear forwards;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
